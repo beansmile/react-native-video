@@ -250,7 +250,12 @@ class ReactExoplayerView extends FrameLayout implements
     @Override
     public void onHostResume() {
         if (!playInBackground || !isInBackground) {
-            setPlayWhenReady(!isPaused);
+            postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setPlayWhenReady(!isPaused);
+                }
+            }, 200);
         }
         isInBackground = false;
     }
